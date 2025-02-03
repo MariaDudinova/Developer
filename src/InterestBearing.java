@@ -1,0 +1,4 @@
+interface InterestBearing {
+
+    double applyInterest();
+}
