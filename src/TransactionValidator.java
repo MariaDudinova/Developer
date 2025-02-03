@@ -1,4 +1,4 @@
-public interface TransactionValidator {
+interface TransactionValidator {
 
     boolean validate(double amount);
 

@@ -1,4 +1,4 @@
-public class CreditAccount extends BankAccount implements TransactionFee, TransactionValidator{
+class CreditAccount extends BankAccount implements TransactionFee, TransactionValidator{
     int creditLimit = -5000;
 
     @Override
@@ -17,7 +17,7 @@ public class CreditAccount extends BankAccount implements TransactionFee, Transa
             if (balance - amount >= creditLimit) {
                 balance -= amount;
             } else {
-                System.out.println("Недостаточно средств");
+                System.out.println("Лимит -5000 превышен");
             }
         }
         return balance;

@@ -1,4 +1,4 @@
-public interface InterestBearing {
+interface InterestBearing {
 
     double applyInterest();
 }

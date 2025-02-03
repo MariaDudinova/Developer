@@ -1,4 +1,4 @@
-public interface TransactionFee {
+interface TransactionFee {
     double applyFee(double amount);
 
 

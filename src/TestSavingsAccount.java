@@ -7,8 +7,9 @@ public class TestSavingsAccount {
     @Test
     public void applyInterest() {
         SavingsAccount savingsAccount = new SavingsAccount("111", 5000, "Dudinova");
+        double expected = 5012.5;
         double actual = savingsAccount.applyInterest();
-        Assert.assertEquals(5012.5, actual, 0.001);
+        Assert.assertEquals(expected, actual, 0.001);
     }
 
     @Test

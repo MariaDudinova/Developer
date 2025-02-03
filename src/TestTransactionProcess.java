@@ -10,7 +10,7 @@ public class TestTransactionProcess {
     @Test
     public void processTransaction() {
         List<BankAccount> bankAccounts = new ArrayList<>();
-        bankAccounts.add(new DebitAccount("111", 1000, "John Doe"));
+        bankAccounts.add(new DebitAccount("111", 1000, "Dudinova"));
 
         TransactionProcess transactionProcess = new TransactionProcess();
         double expected = 500;

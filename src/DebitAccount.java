@@ -1,4 +1,4 @@
-public class DebitAccount extends BankAccount implements TransactionValidator{
+class DebitAccount extends BankAccount implements TransactionValidator{
 
     @Override
     double withdraw(double amount){//снятие (возможно только если баланс >= запрашиваемой суммы)
@@ -19,7 +19,7 @@ public class DebitAccount extends BankAccount implements TransactionValidator{
         else return true;
     }
 
-    public DebitAccount(String accountNumber, double balance, String accountHolder) {
+    DebitAccount(String accountNumber, double balance, String accountHolder) {
         super(accountNumber, balance, accountHolder);
     }
 

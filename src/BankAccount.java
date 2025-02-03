@@ -1,4 +1,4 @@
-public abstract class BankAccount {
+abstract class BankAccount {
     String accountNumber;
     double balance;
     String accountHolder;
@@ -12,6 +12,7 @@ public abstract class BankAccount {
     abstract double withdraw(double amount); //для снятия наличных
 
     double deposit(double amount){ //пополнение счета
-        return balance += amount;
+        balance += amount;
+        return balance;
     }
 }
