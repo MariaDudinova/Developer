@@ -3,10 +3,15 @@ public abstract class BankAccount {
     double balance;
     String accountHolder;
 
+    public BankAccount(String accountNumber, double balance, String accountHolder) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountHolder = accountHolder;
+    }
+
     abstract double withdraw(double amount); //для снятия наличных
 
-    double deposit(double amount) //пополнение счета
-    {
+    double deposit(double amount){ //пополнение счета
         return balance += amount;
-    } //для пополнения средств
+    }
 }

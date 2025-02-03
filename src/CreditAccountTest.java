@@ -5,9 +5,9 @@ public class CreditAccountTest {
 
     @Test
     public void withdraw() {
-        CreditAccount account = new CreditAccount();
+        CreditAccount creditAccount = new CreditAccount("111", 5000, "Dudinova");
         double expected = 5000;
-        double actual = account.withdraw(5000,10001);
+        double actual = creditAccount.withdraw(10001);
         Assert.assertEquals(expected, actual, 0.001);
     }
 }

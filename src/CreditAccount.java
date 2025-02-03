@@ -1,6 +1,5 @@
 public class CreditAccount extends BankAccount implements TransactionFee {
     int creditLimit = -5000;
-    double balance = 5000;
 
     @Override
     public double applyFee(double sum) { //комиссия - 1% от суммы
@@ -20,5 +19,8 @@ public class CreditAccount extends BankAccount implements TransactionFee {
         return balance;
     }
 
+    public CreditAccount(String accountNumber, double balance, String accountHolder) {
+        super(accountNumber, balance, accountHolder);
+    }
 
 }

@@ -1,8 +1,7 @@
 public class DebitAccount extends BankAccount{
-    double balance = 500;
+
     @Override
-    double withdraw(double amount) //снятие (возможно только если баланс >= запрашиваемой суммы)
-    {
+    double withdraw(double amount){//снятие (возможно только если баланс >= запрашиваемой суммы)
         if (balance >= amount){
             balance-=amount;
         }
@@ -10,4 +9,7 @@ public class DebitAccount extends BankAccount{
         return balance;
     }
 
+    public DebitAccount(String accountNumber, double balance, String accountHolder) {
+        super(accountNumber, balance, accountHolder);
+    }
 }

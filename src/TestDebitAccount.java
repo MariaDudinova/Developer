@@ -4,8 +4,8 @@ import org.junit.Test;
 public class TestDebitAccount {
     @Test
     public void withdraw() {
-       // balance = 500;
-        DebitAccount debitAccount = new DebitAccount();
+
+        DebitAccount debitAccount = new DebitAccount("111", 500, "Dudinova");
         double expected = 0;
         double actual=debitAccount.withdraw(500);
 
