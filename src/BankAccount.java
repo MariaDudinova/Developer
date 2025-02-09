@@ -1,18 +1,19 @@
-abstract class BankAccount {
-    String accountNumber;
-    double balance;
-    String accountHolder;
+import java.math.BigDecimal;
 
-    public BankAccount(String accountNumber, double balance, String accountHolder) {
+public abstract class BankAccount {
+    protected String accountNumber;
+    protected BigDecimal balance;
+    protected String accountHolder;
+
+    public BankAccount(String accountNumber, BigDecimal balance, String accountHolder) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountHolder = accountHolder;
     }
 
-    abstract double withdraw(double amount); //для снятия наличных
+    abstract BigDecimal withdraw(BigDecimal amount);
 
-    double deposit(double amount){ //пополнение счета
-        balance += amount;
-        return balance;
+    BigDecimal deposit(BigDecimal amount){
+        return balance.add(amount);
     }
 }

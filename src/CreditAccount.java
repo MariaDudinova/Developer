@@ -1,35 +1,37 @@
-class CreditAccount extends BankAccount implements TransactionFee, TransactionValidator{
-    int creditLimit = -5000;
+import java.math.BigDecimal;
 
+public class CreditAccount extends BankAccount implements TransactionFee, TransactionValidator{
+    protected BigDecimal creditLimit = new  BigDecimal("-5000");
+
+    /** Комиссия 1% от суммы */
     @Override
-    public double applyFee(double amount) { //комиссия - 1% от суммы
-       amount+=amount*0.01;
-       return amount;
+    public BigDecimal applyFee(BigDecimal amount) {
+        amount = amount.add(amount.multiply(new BigDecimal("0.01")));
+        return amount;
     }
-
+    /** Операция снятия (возможно только если итоговый баланс >= -5000) */
     @Override
-    double withdraw(double amount) { //снятие (возможно только если итоговый баланс >= -5000)
-        if(!validate(amount)) {
+    BigDecimal withdraw(BigDecimal amount) {
+        if (!validate(amount)) {
             System.out.println("Транзакции более 5000 запрещены");
         }
         else {
             amount = applyFee(amount);
-            if (balance - amount >= creditLimit) {
-                balance -= amount;
+            if ((balance.subtract(amount)).compareTo(creditLimit) >= 0) {
+                balance = balance.subtract(amount);
             } else {
-                System.out.println("Лимит -5000 превышен");
+                System.out.println("Лимит баланса (-5000) превышен");
             }
         }
         return balance;
     }
-
+    /** Запрет на транзакции больше 5000 */
     @Override
-    public boolean validate(double amount) {//запрет на транзакции > 5000
-        if(amount > 5000) return false;
-        else return true;
+    public boolean validate(BigDecimal amount) {
+        return amount.compareTo(new BigDecimal("5000")) <= 0;
     }
 
-    public CreditAccount(String accountNumber, double balance, String accountHolder) {
+    public CreditAccount(String accountNumber, BigDecimal balance, String accountHolder) {
         super(accountNumber, balance, accountHolder);
     }
 

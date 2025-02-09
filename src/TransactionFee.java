@@ -1,5 +1,5 @@
-interface TransactionFee {
-    double applyFee(double amount);
+import java.math.BigDecimal;
 
-
+public interface TransactionFee {
+    BigDecimal applyFee(BigDecimal amount);
 }

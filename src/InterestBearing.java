@@ -1,4 +1,5 @@
-interface InterestBearing {
+import java.math.BigDecimal;
 
-    double applyInterest();
+public interface InterestBearing {
+    BigDecimal applyInterest();
 }

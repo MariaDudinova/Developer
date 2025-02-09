@@ -1,37 +1,40 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import java.math.BigDecimal;
 
-public class TestCreditAccount {
+public class TestCreditAccount extends TestDataGeneratorUtil{
 
-    @Test
-    public void withdraw() {
-        CreditAccount creditAccount = new CreditAccount("111", 5000, "Dudinova");
-        double expected = 960;
-        double actual = creditAccount.withdraw(4000);
-        Assert.assertEquals(expected, actual, 0.001);
+    @ParameterizedTest
+    @MethodSource("creditAccountTestData")
+    @DisplayName("Проверка снятия с CreditAccount")
+    public void testWithdraw(CreditAccount creditAccount) {
+        BigDecimal actual = creditAccount.withdraw(new BigDecimal("4000"));
+        Assertions.assertTrue(actual.compareTo(new BigDecimal("960")) == 0 || actual.compareTo(new BigDecimal("-4090")) == 0);
     }
 
-    @Test
-    public void withdrawWithLim() {
-        CreditAccount creditAccount = new CreditAccount("111", 0, "Dudinova");
-        double expected2 = 0;
-        double actual2 = creditAccount.withdraw(5000);
-        Assert.assertEquals(expected2, actual2, 0.001);
+    @ParameterizedTest
+    @MethodSource("creditAccountTestData")
+    @DisplayName("Проверка снятия с CreditAccount в случае итогового баланса, выходящего за лимит(-5000)")
+    public void withdrawWithLim(CreditAccount creditAccount) {
+        BigDecimal actual2 = creditAccount.withdraw(new BigDecimal("4950"));
+        Assertions.assertTrue(actual2.compareTo(new BigDecimal("0.50")) == 0 || actual2.compareTo(new BigDecimal("-50")) == 0);
     }
 
-    @Test
-    public void withdrawWithValid() {
-        CreditAccount creditAccount = new CreditAccount("111", 60000, "Dudinova");
-        double expected3 = 60000;
-        double actual3 = creditAccount.withdraw(10000);
-        Assert.assertEquals(expected3, actual3, 0.001);
+    @ParameterizedTest
+    @MethodSource("creditAccountTestData")
+    @DisplayName("Проверка снятия с CreditAccount суммы превышающей лимит (5000)")
+    public void withdrawWithValid(CreditAccount creditAccount) {
+        BigDecimal actual3 = creditAccount.withdraw(BigDecimal.valueOf(10000));
+        Assertions.assertTrue(actual3.compareTo(new BigDecimal("5000")) == 0 || actual3.compareTo(new BigDecimal("-50")) == 0);
     }
 
-    @Test
-    public void applyFee() {
-        CreditAccount creditAccount = new CreditAccount("111", 5000, "Dudinova");
-        double expected = 5050;
-        double actual = creditAccount.applyFee(5000);
-        Assert.assertEquals(expected, actual, 0.001);
+    @ParameterizedTest
+    @MethodSource("creditAccountTestData")
+    @DisplayName("Проверка взятия комиссии 1% от суммы")
+    public void applyFee(CreditAccount creditAccount) {
+        BigDecimal actual = creditAccount.applyFee(new BigDecimal("5000"));
+        Assertions.assertTrue(actual.compareTo(new BigDecimal("5050")) == 0);
     }
 }
