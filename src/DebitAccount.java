@@ -4,7 +4,7 @@ public class DebitAccount extends BankAccount implements TransactionValidator{
 
     /** Операция снятия (возможно только если баланс >= запрашиваемой суммы) */
     @Override
-    BigDecimal withdraw(BigDecimal amount){
+    public BigDecimal withdraw(BigDecimal amount){
         if (!validate(amount)) {
             System.out.println("Транзакции более 10000 запрещены");
         }
@@ -21,8 +21,7 @@ public class DebitAccount extends BankAccount implements TransactionValidator{
         return amount.compareTo(new BigDecimal("10000")) <= 0;
     }
 
-    DebitAccount(String accountNumber, BigDecimal balance, String accountHolder) {
+    public DebitAccount(String accountNumber, BigDecimal balance, String accountHolder) {
         super(accountNumber, balance, accountHolder);
     }
-
 }

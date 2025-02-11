@@ -11,9 +11,9 @@ public abstract class BankAccount {
         this.accountHolder = accountHolder;
     }
 
-    abstract BigDecimal withdraw(BigDecimal amount);
+    public abstract BigDecimal withdraw(BigDecimal amount);
 
-    BigDecimal deposit(BigDecimal amount){
+    public BigDecimal deposit(BigDecimal amount){
         return balance.add(amount);
     }
 }
