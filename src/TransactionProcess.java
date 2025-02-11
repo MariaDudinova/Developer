@@ -1,7 +1,8 @@
+import java.math.BigDecimal;
 import java.util.List;
 
-class TransactionProcess {
-    void processTransaction (List<BankAccount> accounts, double amount) {
+public class TransactionProcess {
+    void processTransaction (List<BankAccount> accounts, BigDecimal amount) {
         for (BankAccount account : accounts) {
             account.withdraw(amount);
         }

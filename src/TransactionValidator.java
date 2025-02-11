@@ -1,5 +1,5 @@
+import java.math.BigDecimal;
+
 interface TransactionValidator {
-
-    boolean validate(double amount);
-
+    boolean validate(BigDecimal amount);
 }
